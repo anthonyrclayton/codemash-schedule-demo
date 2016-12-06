@@ -1,40 +1,37 @@
 import React, { Component } from 'react';
 import Session from './Session';
+import { updateSessions } from '../store/actions';
+import { connect } from 'react-redux';
 
-export default class SessionList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: true,
-      sessions: []
-    };
-  }
-
+class SessionList extends Component {
   componentDidMount() {
     const url = 'https://speakers.codemash.org/api/sessionsdata';
-    const _that = this;
 
-    fetch(url).then((r) => {
-      r.json().then((json) => {
-        _that.setState({
-          loading: false,
-          sessions: json
-        });
-      })
-    }).catch(console.error);
+    fetch(url).then((r) => r.json().then(this.props.updateSessions))
+      .catch(console.error);
   }
 
   render() {
-    let { sessions } = this.state;
+    let { sessions, loading } = this.props;
 
-    if (this.state.loading) return <div><h1>Loading....</h1></div>;
+    if (loading) return <div><h1>Loading....</h1></div>;
 
     return(
-        <ul>
-        { sessions.map((s) => {return <Session key={s.Id} {...s}/>;})
-        }
+      <ul>
+        { sessions.map((s) => {return <Session key={s.Id} {...s}/>;})}
       </ul>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateSessions: (data) => dispatch(updateSessions(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SessionList);
