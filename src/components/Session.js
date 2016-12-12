@@ -26,7 +26,7 @@ export default class Session extends Component {
             <div>{ this.props.Rooms.join(' - ') } </div>
 
             <div>
-              { this.props.SessionStartTime } - { this.props.SessionStartTime }
+              { this.props.SessionStartTime } - { this.props.SessionEndTime }
             </div>
 
             <div>

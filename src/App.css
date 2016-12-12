@@ -18,6 +18,18 @@
   font-size: large;
 }
 
+.time .header {
+  background-color: #000;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.time h2 {
+  color: #DDDDDD;
+  padding: 9px;
+}
+
 ul {
   list-style: none;
 }
