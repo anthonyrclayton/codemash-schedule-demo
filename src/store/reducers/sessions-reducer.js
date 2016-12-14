@@ -18,9 +18,10 @@ const reducer = (state = INITIAL_STATE, action = {}) => {
   switch(action.type) {
 
   case 'UPDATE_SESSIONS':
+    const normalized = byStartTime(action.sessions)
     return {
       ...state,
-      sessions: byStartTime(action.sessions),
+      sessions: normalized,
       loading: false
     }
   default:

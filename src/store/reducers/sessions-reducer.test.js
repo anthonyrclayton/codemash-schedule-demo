@@ -1,3 +1,4 @@
+/* global it, expect */
 import sessionsReducer from './sessions-reducer';
 import R from 'ramda'
 
@@ -36,6 +37,5 @@ it('UPDATE_SESSIONS normalizes sessions', () => {
   const state = sessionsReducer(initialState, action);
 
   expect(state.loading).toEqual(false);
-  expect(state.sessions[1].Title).toEqual('Great');
-  expect(R.keys(state.times).length).toEqual(2)
+  expect(state.sessions["2017-01-10T12:00:00"][1].Title).toEqual('Great');
 });
