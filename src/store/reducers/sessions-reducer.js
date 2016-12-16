@@ -2,26 +2,49 @@ import R from 'ramda'
 
 const INITIAL_STATE = {
   loading: true,
-  sessions: []
+  sessions: [],
+  filters: ["Kidz Mash"]
 };
-
-//const normalize = (object, session) => {
-//  object[session.Id] = session
-//  return object
-//}
 
 const byStartTime = R.groupBy((session) => {
   return session.SessionStartTime.toString()
 })
 
+let sessionsData = []
+
+const applyFilters = (sessions, filters) => {
+  return R.reject((s) => R.contains(s.SessionType)(filters))(sessions)
+}
+
+const toggleFilter = (filter, filters) => {
+  if(R.contains(filter)(filters)) {
+    return R.without([filter])(filters)
+  }
+
+  return R.append(filter, filters)
+}
+
+export const applyFilter = (filter) => {
+  return { type: 'UPDATE_FILTERS', filter }
+}
+
 const reducer = (state = INITIAL_STATE, action = {}) => {
   switch(action.type) {
 
-  case 'UPDATE_SESSIONS':
-    const normalized = byStartTime(action.sessions)
+  case 'UPDATE_FILTERS':
+    let filters = toggleFilter(action.filter, state.filters)
+
     return {
       ...state,
-      sessions: normalized,
+      filters,
+      sessions: byStartTime(applyFilters(sessionsData, filters))
+    }
+  case 'UPDATE_SESSIONS':
+    sessionsData  = action.sessions
+
+    return {
+      ...state,
+      sessions: byStartTime(applyFilters(action.sessions, state.filters)),
       loading: false
     }
   default:

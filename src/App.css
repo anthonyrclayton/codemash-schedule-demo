@@ -34,6 +34,25 @@ ul {
   list-style: none;
 }
 
+.toggles {
+  padding: 0px 20px 0px 90px;
+  display: flex;
+  width: 92%;
+  justify-content: space-between;
+}
+
+.toggle {
+  padding: 10px;
+}
+
+.toggle.on {
+  opacity: 0.5
+}
+
+.toggle a {
+    text-decoration: none;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
