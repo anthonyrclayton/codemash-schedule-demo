@@ -41,12 +41,37 @@ ul {
   justify-content: space-between;
 }
 
+.sectionTitle {
+  margin-right: 32px;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.2em;
+}
+
+.room {
+  opacity: 0.5;
+}
+
 .toggle {
   padding: 10px;
 }
 
 .toggle.on {
   opacity: 0.5
+}
+
+.tag {
+  font-size: 0.6em;
+  border: 1px solid #999;
+  color: #555;
+  padding: 3px;
+  background-color: #DDD;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .toggle a {

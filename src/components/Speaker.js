@@ -7,8 +7,7 @@ export default class Speaker extends Component {
     return (
       <div>
         <img alt="speaker" src={ this.props.GravatarUrl } />
-
-        <h4>{ name }</h4>
+        <div>{ name }</div>
       </div>
     );
   }

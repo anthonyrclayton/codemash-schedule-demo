@@ -17,23 +17,24 @@ export default class Session extends Component {
   render () {
     return (
       <li>
-        <h3>{ this.props.Title } <a href="#" onClick={ this.onToggle.bind(this) }>{this.state.showDetails ? '-' : '+'}</a></h3>
+      <div className="sectionTitle">
+        <span className="title">
+          { this.props.Title }
+          <a href="#" onClick={ this.onToggle.bind(this) }>{this.state.showDetails ? '-' : '+'}</a>
+        </span>
+        <span className="room">{ this.props.Rooms.join(' - ') }</span>
+      </div>
 
-
-        { this.state.showDetails && <div>
+        { this.state.showDetails && <div className="details">
             <Speaker {...this.props.Speakers[0]} />
-
-            <div>{ this.props.Rooms.join(' - ') } </div>
-
-            <div>
-              { this.props.SessionStartTime } - { this.props.SessionEndTime }
-            </div>
-
-            <div>
-              {this.props.Abstract}
-            </div>
+            <div> {this.props.Abstract} </div>
           </div>
         }
+
+        <div>
+          { this.props.Tags.map(t => <span className='tag'>{t}</span>)}
+        </div>
+
       </li>
     );
   }
